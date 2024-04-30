@@ -39,6 +39,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //1: GET All posts
+app.get("/posts", (req, res) => {
+  res.json(posts);
+});
 
 //2: GET a specific post by id
 
