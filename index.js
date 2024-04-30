@@ -47,32 +47,39 @@ app.get("/posts", (req, res) => {
 app.get("/posts/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const foundPost = posts.find((post) => post.id === id);
+  if (!foundPost) return res.status(404).json({ message: "Post not found" });
   res.json(foundPost);
 });
 
 //3: POST a new post
 app.post("/posts", (req, res) => {
+  const newId = (lastId += 1);
   const newPost = {
-    id: posts.length + 1,
+    id: newId,
     title: req.body.title,
     content: req.body.content,
     author: req.body.author,
+    date: new Date(),
   };
-
+  lastId = newId;
   posts.push(newPost);
-  res.json(newPost);
+  res.status(201).json(newPost);
 });
 
 //4: PATCH a post when you just want to update one parameter
 app.patch("/posts/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const existingPost = posts.find((post) => post.id === id);
+  if (!existingPost) return res.status(404).json({ message: "Post not found" });
+
   const replacementPost = {
     id: id,
     title: req.body.title || existingPost.title,
     content: req.body.content || existingPost.content,
     author: req.body.author || existingPost.author,
+    date: new Date(),
   };
+
   const searchIndex = posts.findIndex((post) => post.id === id);
   posts[searchIndex] = replacementPost;
 
@@ -85,11 +92,11 @@ app.delete("/posts/:id", (req, res) => {
   const searchIndex = posts.findIndex((post) => post.id === id);
   if (searchIndex > -1) {
     posts.splice(searchIndex, 1);
-    res.sendStatus(200);
+    res.json({ message: "Post deleted" });
   } else {
-    res
-      .status(404)
-      .json({ error: `Post with id: ${id} not found. No posts were deleted.` });
+    res.status(404).json({
+      message: `Post with id: ${id} not found. No posts were deleted.`,
+    });
   }
 });
 
