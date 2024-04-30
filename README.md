@@ -1,4 +1,4 @@
-# Express Blogging App
+# Blog API Project
 
 This is a simple Express.js application for managing blog posts. It consists of a client-server architecture where the server provides API endpoints for creating, reading, updating, and deleting blog posts. The client, built using Express.js and EJS, interacts with these endpoints to render the user interface and handle user actions.
 
@@ -20,7 +20,7 @@ git clone https://github.com/akinmertbur/Blog-API-Project.git
 2. Navigate to the project directory:
 
 ```bash
-cd express-blogging-app
+cd Blog-API-Project
 ```
 
 3. Install dependencies:
