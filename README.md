@@ -1,4 +1,4 @@
-# Blog API Project
+# Blog API Application
 
 This is a simple Express.js application for managing blog posts. It consists of a client-server architecture where the server provides API endpoints for creating, reading, updating, and deleting blog posts. The client, built using Express.js and EJS, interacts with these endpoints to render the user interface and handle user actions.
 
