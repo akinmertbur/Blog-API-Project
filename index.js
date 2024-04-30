@@ -51,6 +51,17 @@ app.get("/posts/:id", (req, res) => {
 });
 
 //3: POST a new post
+app.post("/posts", (req, res) => {
+  const newPost = {
+    id: posts.length + 1,
+    title: req.body.title,
+    content: req.body.content,
+    author: req.body.author,
+  };
+
+  posts.push(newPost);
+  res.json(newPost);
+});
 
 //4: PATCH a post when you just want to update one parameter
 
