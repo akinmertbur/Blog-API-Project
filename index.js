@@ -44,6 +44,11 @@ app.get("/posts", (req, res) => {
 });
 
 //2: GET a specific post by id
+app.get("/posts/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const foundPost = posts.find((post) => post.id === id);
+  res.json(foundPost);
+});
 
 //3: POST a new post
 
